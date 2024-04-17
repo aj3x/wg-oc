@@ -7,12 +7,12 @@ ARG BUILD_DATE COMMIT_SHA
 
 # https://github.com/opencontainers/image-spec/blob/master/spec.md
 LABEL org.opencontainers.image.title='wgoc' \
-#       org.opencontainers.image.created="${BUILD_DATE}" \
+    #   org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.description='AnyConnect-compatible client to route host traffic' \
     #   org.opencontainers.image.documentation='https://github.com/aw1cks/openconnect/blob/master/README.md' \
-      org.opencontainers.image.version='1.0'
-#       org.opencontainers.image.source='https://github.com/aw1cks/openconnect' \
-#       org.opencontainers.image.revision="${COMMIT_SHA}"
+      org.opencontainers.image.version='1.0' \
+      org.opencontainers.image.source='https://github.com/aj3x/wg-oc'
+    #   org.opencontainers.image.revision="${COMMIT_SHA}"
 
 RUN apk add --no-cache openconnect dnsmasq
 
