@@ -17,7 +17,7 @@ LABEL org.opencontainers.image.title='wgoc' \
 RUN apk add --no-cache openconnect dnsmasq
 
 WORKDIR /vpn
-# COPY ./entrypoint.sh .
+COPY ./gp.sh .
 
 # HEALTHCHECK --start-period=15s --retries=1 \
 #   CMD pgrep openconnect || exit 1; pgrep dnsmasq || exit 1

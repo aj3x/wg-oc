@@ -1,0 +1,14 @@
+docker run -d \
+  --name=wireguard \
+  --cap-add=NET_ADMIN \
+  --cap-add=SYS_MODULE \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -e SERVERPORT=51820 \
+  -e PEERS=1 \
+  -e INTERNAL_SUBNET=172.16.42.0 \
+  -p 51820:51820/udp \
+  -v ~/wgconfig:/config \
+  --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+  --restart unless-stopped ghcr.io/aj3x/wg-oc
