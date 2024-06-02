@@ -1,10 +1,3 @@
-#read -p "Press enter to continue"
-#wg-quick down wg0
-#wg-quick up wg0
-#ip route del default
-#ip route add default via 192.168.16.1 dev eth0
-#ip route add 192.168.10.0/24 dev tun0 scope link
-
 #check that openconnect isn't already running
 if pgrep -x "openconnect" > /dev/null
 then
