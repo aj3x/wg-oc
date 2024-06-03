@@ -24,7 +24,7 @@ while true; do
             sleep 3
             ip route del default
             ip route add $OLD_DEFAULT_ROUTE
-            ip route add 192.168.10.0./24 dev tun0 scope link
+            ip route add 192.168.10.0/24 dev tun0 scope link
             exit 0
         fi
         sleep 3
