@@ -9,6 +9,24 @@ fi
 
 OLD_DEFAULT_ROUTE=$(ip route list default | head -n 1)
 echo "saving old default route: $OLD_DEFAULT_ROUTE"
+
+# if GP_HOST is not set, ask for it
+if [ -z "$GP_HOST" ]; then
+    read -p "Enter hostname: " GP_HOST
+fi
+# if GP_USER is not set, ask for it
+if [ -z "$GP_USER" ]; then
+    read -p "Enter username: " GP_USER
+fi
+# if GP_PASS is not set, ask for it
+if [ -z "$GP_PASS" ]; then
+    read -s -p "Enter password: " GP_PASS
+fi
+# if CIDR_RANGE is not set, use default
+if [ -z "$CIDR_RANGE" ]; then
+    CIDR_RANGE="192.168.10.0/24"
+fi
+
 echo "starting openconnect"
 timeout 5h openconnect --protocol=gp --user=$GP_USER --passwd-on-stdin $GP_HOST < <(echo $GP_PASS) &
 
@@ -24,7 +42,7 @@ while true; do
             sleep 3
             ip route del default
             ip route add $OLD_DEFAULT_ROUTE
-            ip route add 192.168.10.0/24 dev tun0 scope link
+            ip route add $CIDR_RANGE dev tun0 scope link
             exit 0
         fi
         sleep 3
