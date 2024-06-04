@@ -97,3 +97,18 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        
+      - name: Delete Untagged
+        # You may pin to the exact commit or the version.
+        # uses: camargo/delete-untagged-action@0092392dc55f1ab61e2ff331a6734eb452b67205
+        uses: camargo/delete-untagged-action@v1
+        with:
+          # A GitHub token with the 'delete:packages' permission.
+          github-token: ${{ secrets.DEL_IMAGE_TOKEN }}
+          # Override the package name that contains the untagged versions you want to delete.
+          # package-name: # optional
+          # Set to true if you are running this action against a personal account package.
+          # personal-account: # optional
+          # The owner and repository name. For example, 'Codertocat/Hello-World'.
+          # repository: # optional, default is ${{ github.repository }}
+          
